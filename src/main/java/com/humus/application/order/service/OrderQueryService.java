@@ -3,14 +3,16 @@ package com.humus.application.order.service;
 import com.humus.application.order.port.in.OrderQueryUseCase;
 import com.humus.application.order.port.out.OrderRepository;
 import com.humus.domain.order.Order;
-import com.humus.domain.order.exception.OrderNotFoundException;
+import com.humus.exception.OrderNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Service
 public class OrderQueryService implements OrderQueryUseCase {
 
     private final OrderRepository orderRepository;
